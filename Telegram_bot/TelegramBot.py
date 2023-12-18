@@ -5,23 +5,22 @@ import requests
 
 import json
 
-#from telegram.bot import Bot 
+from telegram.bot import Bot 
 
+bot = telegram.Bot(token='5923635818:AAFsDcVUx60nuzx6wHiDUJzst5F0xbwpdB0') #Replace TOKEN with your token string
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-bot = telegram.Bot(token='6787868192:AAG5rQ9SJm29u18siHQDQjAm9sTtXqJcUOk') #Replace TOKEN with your token string
-updater = Updater(token='6787868192:AAG5rQ9SJm29u18siHQDQjAm9sTtXqJcUOk', use_context=True) #Replace TOKEN with your token string
+
+updater = Updater(token='5923635818:AAFsDcVUx60nuzx6wHiDUJzst5F0xbwpdB0', use_context=True) #Replace TOKEN with your token string
 dispatcher = updater.dispatcher
 
 
 #hello world response
 def hello(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text='Hello, This is a telegram bot')
-hello_handler = CommandHandler('hello', hello)
-dispatcher.add_handler(hello_handler)
-updater.start_polling()
+
 #rest api hit and get data
-'''def summary(update, context):
+def summary(update, context):
     response = requests.get('https://api.covid19api.com/summary')
     if(response.status_code==200): #Everything went okay, we have the data
         data = response.json()
@@ -29,6 +28,7 @@ updater.start_polling()
         context.bot.send_message(chat_id=update.effective_chat.id, text=data['Global'])
     else: #something went wrong
         context.bot.send_message(chat_id=update.effective_chat.id, text="Error, something went wrong.")
+
 corona_summary_handler = CommandHandler('summary', summary)
 dispatcher.add_handler(corona_summary_handler)
 
@@ -75,4 +75,4 @@ start_value=CommandHandler('youtube', fnc2)
 dispatcher.add_handler (start_value)
 
 
-updater.start_polling()'''
+updater.start_polling()
